@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Milly Beauty | Estética & Skincare</title>
+<meta name="description" content="Catálogo premium Milly Beauty com produtos para estética, skincare e cuidados avançados. Frete incluso para todo o Brasil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="#"><span>Milly</span> Beauty</a>
+    <div class="nav-actions">
+      <a href="#catalogo">Catálogo</a>
+      <button id="cartBtn" class="cart-btn" aria-label="Abrir seleção">Seleção <span id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">CATÁLOGO • SETEMBRO</div>
+      <h1>Beleza, estética e cuidados em uma seleção feita para você.</h1>
+      <p>Catálogo organizado, busca rápida e atendimento individual. Todos os valores exibidos já incluem frete para todo o Brasil.</p>
+      <div class="hero-actions">
+        <a class="primary" href="#catalogo">Ver catálogo</a>
+        <a class="secondary" href="#atendimento">Falar com atendimento</a>
+      </div>
+      <div class="trust">
+        <span>📦 Frete incluso</span><span>🔎 Catálogo organizado</span><span>💬 Atendimento individual</span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="orb"></div>
+      <div class="hero-card-inner">
+        <small>EXPERIÊNCIA PREMIUM</small>
+        <strong>Milly Beauty</strong>
+        <p>Escolha os itens, preencha os dados e envie o pedido direto pelo WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="catalogo" class="catalog wrap">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">CATÁLOGO COMPLETO</div>
+      <h2>Encontre seu produto</h2>
+    </div>
+    <div class="count"><span id="resultCount"></span> itens</div>
+  </div>
+
+  <div class="toolbar">
+    <div class="searchbox">
+      <span>⌕</span>
+      <input id="search" type="search" placeholder="Buscar produto..." autocomplete="off">
+    </div>
+    <select id="category" aria-label="Categoria"></select>
+  </div>
+
+  <div id="chips" class="chips"></div>
+  <div id="products" class="product-grid"></div>
+  <div id="empty" class="empty" hidden>Nenhum produto encontrado.</div>
+</section>
+
+<section id="atendimento" class="cta">
+  <div class="wrap cta-card">
+    <div>
+      <div class="eyebrow light">ATENDIMENTO</div>
+      <h2>Monte sua seleção e envie o pedido pelo WhatsApp.</h2>
+      <p>Alguns itens podem estar sujeitos a exigências de prescrição, uso profissional ou outras regras aplicáveis. A confirmação é feita no atendimento.</p>
+    </div>
+    <button class="primary light-btn" onclick="openCart()">Ver minha seleção</button>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div><strong>Milly Beauty</strong><br><span>Catálogo premium • Brasil</span></div>
+    <div class="footer-note">Valores informados com frete incluso. Disponibilidade sujeita à confirmação.</div>
+  </div>
+</footer>
+
+<div id="drawerBackdrop" class="backdrop" hidden></div>
+<aside id="drawer" class="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <div><small>SUA SELEÇÃO</small><h3>Itens escolhidos</h3></div>
+    <button class="icon-btn" id="closeCart" type="button" aria-label="Fechar seleção">×</button>
+  </div>
+
+  <div class="drawer-scroll" id="drawerScroll">
+    <div id="cartItems" class="cart-items"></div>
+
+    <div class="drawer-foot">
+      <div class="total-row"><span>Total estimado</span><strong id="cartTotal">R$ 0,00</strong></div>
+
+      <div class="checkout-form">
+        <h4>Dados do destinatário</h4>
+        <div class="field"><label>Nome completo</label><input id="fullName" type="text" placeholder="Digite o nome completo"></div>
+        <div class="field"><label>CPF</label><input id="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00"></div>
+        <div class="field"><label>Telefone/WhatsApp</label><input id="phone" type="tel" placeholder="(00) 00000-0000"></div>
+        <div class="field"><label>E-mail</label><input id="email" type="email" placeholder="nome@email.com"></div>
+        <div class="field"><label>Endereço completo</label><input id="address" type="text" placeholder="Rua, avenida, complemento..."></div>
+        <div class="field"><label>Ponto de referência</label><input id="reference" type="text" placeholder="Ex.: próximo à praça"></div>
+        <div class="field-grid">
+          <div class="field"><label>CEP</label><input id="cep" type="text" inputmode="numeric" placeholder="00000-000"></div>
+          <div class="field"><label>Número</label><input id="number" type="text" placeholder="Nº"></div>
+        </div>
+        <div class="field"><label>Bairro</label><input id="district" type="text" placeholder="Bairro"></div>
+        <div class="field"><label>Cidade</label><input id="city" type="text" placeholder="Cidade"></div>
+      </div>
+
+      <p class="legal">Revise os dados antes de enviar. Ao tocar no botão, o WhatsApp será aberto com o pedido já preenchido.</p>
+      <button class="primary full" id="copySelection" type="button">ENVIAR PEDIDO PELO WHATSAPP</button>
+      <button class="ghost full" id="clearCart" type="button">Limpar seleção</button>
+      <div class="drawer-bottom-spacer" aria-hidden="true"></div>
+    </div>
+  </div>
+</aside>
+
+<div id="toast" class="toast">Seleção copiada.</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
